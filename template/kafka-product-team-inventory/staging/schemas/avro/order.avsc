@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "namespace": "shadowtraffic.order",
+  "name": "createdValue",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": "string"
+    },
+    {
+      "name": "itemId",
+      "type": "string"
+    },
+    {
+      "name": "customerId",
+      "type": "string"
+    },
+    {
+      "name": "quantity",
+      "type": "int"
+    },
+    {
+      "name": "discountPercent",
+      "type": "double"
+    }
+  ]
+}

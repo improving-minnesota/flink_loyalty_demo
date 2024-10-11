@@ -1,0 +1,13 @@
+{
+  "bootstrap.servers": "SASL_SSL://pkc-12345.us-east1.gcp.confluent.cloud:9092",
+  "sasl.jaas.config": "org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxx' password='xxxxxxxx';",
+  "schema.registry.url": "https://psrc-12345.us-east1.gcp.confluent.cloud",
+  "basic.auth.user.info": "xxxx:xxxxxxx",
+
+  "key.serializer": "org.apache.kafka.common.serialization.StringSerializer",
+  "value.serializer": "io.confluent.kafka.serializers.KafkaAvroSerializer",
+  "basic.auth.credentials.source": "USER_INFO",
+  "sasl.mechanism": "PLAIN",
+  "security.protocol": "SASL_SSL",
+  "client.dns.lookup": "use_all_dns_ips"
+}

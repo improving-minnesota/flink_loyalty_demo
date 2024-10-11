@@ -1,0 +1,41 @@
+{
+  "name": "customer-profiles",
+  "topic": "shadowtraffic.customer.profile",
+  "key": {
+    "_gen": "uuid"
+  },
+  "value": {
+    "name": {
+      "_gen": "string",
+      "expr": "#{Name.full_name}"
+    },
+    "membership": {
+      "_gen": "oneOf",
+      "choices": [
+        "gold",
+        "silver",
+        "bronze"
+      ]
+    },
+    "creditCardNumber": {
+      "_gen": "string",
+      "expr": "#{Business.creditCardNumber}"
+    },
+    "shippingAddress": {
+      "_gen": "string",
+      "expr": "#{Address.fullAddress}"
+    },
+    "directSubscription": {
+      "_gen": "boolean"
+    },
+    "birthday": {
+      "_gen": "string", "expr": "#{Date.birthday '18','80'}"
+    }
+  },
+  "localConfigs": {
+    "kafkaValueAvroSchemaHint": {
+      "_gen": "loadJsonFile",
+      "file": "/schemas/avro/customer.avsc"
+    }
+  }
+}

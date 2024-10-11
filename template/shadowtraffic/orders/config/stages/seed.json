@@ -1,0 +1,24 @@
+{
+  "generators": [
+    "customer-profiles",
+    "item-profiles",
+    "orders"
+  ],
+  "overrides": {
+    "customer-profiles": {
+      "localConfigs": {
+        "maxEvents": 500
+      }
+    },
+    "item-profiles": {
+      "localConfigs": {
+        "maxEvents": 10000
+      }
+    },
+    "orders": {
+      "localConfigs": {
+        "maxEvents": 50000
+      }
+    }
+  }
+}

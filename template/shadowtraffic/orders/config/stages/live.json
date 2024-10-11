@@ -1,0 +1,42 @@
+{
+  "generators": [
+    "customer-profiles",
+    "item-profiles",
+    "orders"
+  ],
+  "overrides": {
+    "customer-profiles": {
+      "localConfigs": {
+        "throttleMs": {
+          "_gen": "uniformDistribution",
+          "bounds": [
+            30000,
+            60000
+          ]
+        }
+      }
+    },
+    "item-profiles": {
+      "localConfigs": {
+        "throttleMs": {
+          "_gen": "uniformDistribution",
+          "bounds": [
+            10000,
+            60000
+          ]
+        }
+      }
+    },
+    "orders": {
+      "localConfigs": {
+        "throttleMs": {
+          "_gen": "uniformDistribution",
+          "bounds": [
+            5,
+            200
+          ]
+        }
+      }
+    }
+  }
+}

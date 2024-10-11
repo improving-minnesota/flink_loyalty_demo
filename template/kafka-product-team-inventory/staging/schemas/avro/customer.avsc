@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "namespace": "shadowtraffic.customer",
+  "name": "profileValue",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "membership",
+      "type": "string"
+    },
+    {
+      "name": "creditCardNumber",
+      "type": "string"
+    },
+    {
+      "name": "shippingAddress",
+      "type": "string"
+    },
+    {
+      "name": "directSubscription",
+      "type": "boolean"
+    },
+    {
+      "name": "birthday",
+      "type": "string"
+    }
+  ]
+}

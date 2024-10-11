@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "namespace": "shadowtraffic.customer",
+  "name": "orderAggregateValue",
+  "fields": [
+    {
+      "name": "customerId",
+      "type": "string"
+    },
+    {
+      "name": "totalOrders",
+      "type": "long"
+    },
+    {
+      "name": "totalItems",
+      "type": "long"
+    },
+    {
+      "name": "totalSpent",
+      "type": "double"
+    }
+  ]
+}
