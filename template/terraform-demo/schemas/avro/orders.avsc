@@ -1,0 +1,122 @@
+{
+    "namespace": "littlecaesars",
+    "name": "orders",
+    "type": "record",
+    "fields": [
+        {
+            "name": "order_id",
+            "type": {
+                "type": "int",
+                "arg.properties": {
+                    "iteration": {
+                        "start": 1000,
+                        "step": 1
+                    }
+                }
+            }
+        },
+        {
+            "name": "product_id",
+            "type": {
+                "type": "string",
+                "arg.properties": {
+                    "options": [
+                        "828044c8-832b-48b4-b1f0-89a500496335",
+                        "59d324db-d978-4aad-a56a-c40b8f372f7c",
+                        "9b24f6a7-566b-48ca-9f66-10022003864c",
+                        "95c8d8f2-cdef-4720-a529-b6dcd5679b94",
+                        "11f4759d-0cfb-494a-a908-1bc504ca6d96",
+                        "2d8a8e04-b259-45be-9ba3-d39f70150fd7",
+                        "5905058a-db3f-4b15-aa05-aee5c9c16368",
+                        "d4540ce1-c69c-49f6-9f8c-2f0f3edb895e",
+                        "d2033e56-3ab3-4a13-890c-80c48c842901",
+                        "a2df664d-9fa1-4a51-9e07-513c83419433",
+                        "15b7b201-6d46-4456-8dfa-0dbacfcf1de9",
+                        "1e875f62-3d6b-44be-8b65-9b5388cc8399",
+                        "46e3bf53-0898-4ec0-ba1c-da5bf22c7ace",
+                        "6b1f5211-d8e9-4046-8965-58caaae247f2",
+                        "142c1aa4-44b8-429e-a235-273dd477b726",
+                        "ee50a832-a9e0-4847-a77e-61737093ed0e",
+                        "b00405fc-bc40-4a5f-812b-c27b82a50b4d",
+                        "3367bd81-a893-44da-8eac-2983778f7d57",
+                        "f828879a-cc75-4990-acaa-0d4dd454c9a3",
+                        "d7b6e258-3046-40ad-a0be-60a89facdfe8",
+                        "5896f584-4ec6-4925-bbe2-65a3580bbdf8",
+                        "b86d25e8-d13e-4342-b88c-ef8f21c311de",
+                        "fb3f2877-c85d-41b6-ae74-9d05b3eba1b5",
+                        "63a3a11c-6819-4307-a855-328fb1f54d77",
+                        "fb4ee756-ac6f-4e72-b600-82c159f8b284",
+                        "3e09216d-9530-4550-8fd3-95831a703966",
+                        "c8628d98-ff4f-4840-905b-1b9e49cae01d",
+                        "eaa8a67d-393e-4760-bab2-7632dd58e93d",
+                        "cdc79931-139b-4e19-96cb-08cd5364998b",
+                        "5fee4208-2495-466d-84d0-e7b48d62d24f",
+                        "b53fe1f7-a97b-4449-b8d5-873815812cbd",
+                        "5cca9951-2752-4f7a-a7a7-fdc06ec12cf0",
+                        "8b609f0a-0bb7-43ff-8582-db972d559b50",
+                        "c5b13349-4284-44e6-84ef-2f5a87106173",
+                        "419dc433-c0bb-4517-b5e7-fe6a4b105f31",
+                        "bc46c7c4-704f-45e0-a9e4-6bb2b5e1d998",
+                        "f4610031-dedc-4428-95f0-fb45b749ba53",
+                        "fc6c0907-ac6c-4bd0-b606-2fe9c00092eb",
+                        "dd1d0b6a-adc2-417e-b100-972b357b160a",
+                        "2b908fc4-e463-4d7d-9946-d3239894c3bf",
+                        "46c3a55e-ed6d-4665-8547-03119ac9ae8e",
+                        "219aa213-102a-4d2a-a5dc-13d76d074b1d",
+                        "891fd305-feb8-41d5-8db6-09c12bd1b710",
+                        "7dd6f7d4-c7b5-4a48-ab01-0adcbfe4c91c",
+                        "a961fb8d-621d-4dcd-bd48-a770664dd482",
+                        "0e329f4b-d6d7-413c-aa10-3784493810e1",
+                        "140d81ac-5849-480a-9830-482d96dcfb77",
+                        "18f3e84f-2619-4698-a3d9-22bbb38b09d6"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "customer_id",
+            "type": {
+                "type": "string",
+                "arg.properties": {
+                    "options": [
+                        "01a429f8-f576-4d9b-8d0e-4d5e8ef37e09",
+                        "2bca6dfc-997c-4176-b187-93899775bafc",
+                        "8c94b728-9b9c-4a02-8c0f-155e715d2fcf",
+                        "ba889f52-afb8-4651-b012-7464b4aa4b15",
+                        "b523f7f3-0338-4f1f-a951-a387beeb8b6a",
+                        "e2249330-c07a-4796-95c8-a90523ffe210",
+                        "b1949e13-2502-429d-b6ce-b5e60803d9d0",
+                        "bbb7249e-b197-4440-935d-8e952743f465",
+                        "da8e3b18-8e2b-43f5-86c1-2e5a84094be5",
+                        "ddbf0216-8700-4c13-a688-e40fa7f68a5c",
+                        "cbd9a0e9-d427-44c0-a50c-4118f4c8da87",
+                        "93b0afaf-6559-4501-8413-d02581393f8d",
+                        "530a2dc0-1905-4dbc-b321-fa76c3dd2f47",
+                        "940257a4-9ea0-4118-8e97-b1427f3afa59",
+                        "fd67d612-ad15-42f9-9402-e818689f764f",
+                        "2e028c7c-a0af-49ad-b115-140b96fca52c",
+                        "51a493f7-f244-4af7-bad7-1a38bd4b6368",
+                        "25ca3929-17c6-4839-a25f-454c150defd5",
+                        "b1c9d426-bce8-4e7d-8b13-26059302d8b9",
+                        "e8e90ed7-0392-4474-9a3c-6bf231962e19",
+                        "84f2e2e5-71ff-4eb3-916e-942af5358942",
+                        "b1cf713e-ada0-4347-b7f4-423abe6fe00c"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "ts",
+            "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis",
+                "arg.properties": {
+                    "iteration": {
+                        "start": 1609459200000,
+                        "step": 100000
+                    }
+                }
+            }
+        }
+    ]
+}

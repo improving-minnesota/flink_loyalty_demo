@@ -19,10 +19,12 @@ data "confluent_environment" "default" {
   display_name = "default"
 }
 
-module "staging_environment" {
+module "demo_environment" {
+  for_each = {for i, v in var.environment_mappings:  i => v}
   source = "../modules/confluent_cloud_environment"
 
-  environment_display_name  = "staging"
+  environment_display_name  = "demo-${each.value.env_name}"
+  cc_user_email = each.value.email
   stream_governance_package = "ESSENTIALS"
 
   providers = {
@@ -30,13 +32,3 @@ module "staging_environment" {
   }
 }
 
-module "production_environment" {
-  source = "../modules/confluent_cloud_environment"
-
-  environment_display_name = "production"
-  stream_governance_package = "ESSENTIALS"
-
-  providers = {
-    confluent = confluent
-  }
-}
