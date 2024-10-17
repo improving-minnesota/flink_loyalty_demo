@@ -129,7 +129,7 @@ FROM
 Verify the data is making to to `products` and `customers` topics.
 
 ## 4. Data Enrichment
-We will join data from: Order, Customer, Product tables together in a single SQL statement.
+Now that we have cleaned up `products` and `customers`, let's put them to use!  We will join data from: Order, Customer, Product tables together in a single SQL statement.
 
 Create a new table for Order <-> Customer <-> Product join result:
 
