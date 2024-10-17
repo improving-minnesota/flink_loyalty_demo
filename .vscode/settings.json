@@ -1,0 +1,5 @@
+{
+    "amazonQ.telemetry": false,
+    "amazonQ.importRecommendationForInlineCodeSuggestions": false,
+    "amazonQ.showInlineCodeSuggestionsWithCodeReferences": false
+}

@@ -9,6 +9,17 @@ variable "confluent_cloud_api_secret" {
   sensitive   = true
 }
 
+variable "aws_api_key" {
+  description = "AWS API Key for DynamoDB Access"
+  type        = string
+}
+
+variable "aws_api_secret" {
+  description = "AWS API Secret"
+  type        = string
+  sensitive   = true
+}
+
 variable "stream_governance_package" {
   description = "The selected stream governance package - more details can be found at https://docs.confluent.io/cloud/current/stream-governance/packages.html#governance-package-types"
   type        = string
@@ -46,7 +57,7 @@ variable "environment_mappings" {
     description = "List of Email / Environment Mappings"
 
     default = [
-        {email = "flinkdemo2024+nick1@gmail.com", env_name = "nick-env-1"}        
+        {email = "flinkdemo2024+nick1@gmail.com", env_name = "nick-env-1"}
     ]
 
     # default = [

@@ -62,6 +62,26 @@ resource "confluent_api_key" "user-api-key" {
 
 }
 
+resource "confluent_api_key" "data-steward-api-key" {
+  display_name = "User Data Steward API Key"
+  
+  owner {
+    id          = confluent_service_account.env-admin.id
+    api_version = confluent_service_account.env-admin.api_version
+    kind        = confluent_service_account.env-admin.kind
+  }
+
+  managed_resource {
+    id          = data.confluent_schema_registry_cluster.this.id
+    api_version = data.confluent_schema_registry_cluster.this.api_version
+    kind        = data.confluent_schema_registry_cluster.this.kind
+
+    environment {
+      id = confluent_environment.this.id
+    }
+  }
+}
+
 /*************
   CLUSTER
 *************/

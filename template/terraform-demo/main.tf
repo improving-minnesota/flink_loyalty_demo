@@ -27,6 +27,9 @@ module "demo_environment" {
   cc_user_email = each.value.email
   stream_governance_package = "ESSENTIALS"
 
+  aws_api_key = var.aws_api_key
+  aws_api_secret = var.aws_api_secret
+
   providers = {
     confluent = confluent
   }

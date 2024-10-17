@@ -50,3 +50,14 @@ variable "cloud_availability" {
     error_message = "The cloud_availability must be 'SINGLE_ZONE' at this time."
   }
 }
+
+variable "aws_api_key" {
+  description = "AWS API Key for DynamoDB Access"
+  type        = string
+}
+
+variable "aws_api_secret" {
+  description = "AWS API Secret"
+  type        = string
+  sensitive   = true
+}
