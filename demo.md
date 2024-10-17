@@ -58,7 +58,7 @@ You can use your web browser or console to enter Flink SQL statements.
 NOTE: You can also access your Flink Compute Pool from the Data Portal as shown below. Just click on `Data Portal` in the main menu on the left side. Then select your Environment. You should see your topics. When you click on any of the topic tiles you can query the topic's data using Flink. 
 
 Data Portal: `orders` topic selected. Click on `Query` button to access your Flink Compute Pool.
-![image](terraform/img/dataPortal2.png)
+![image](assets/dataPortal.png)
 
 ## 3. Data Transformation
 Our customer and product data is coming in from DynamoDB by way of a CDC connector.  Look at the product data. (Data Portal or Flink Statement)
