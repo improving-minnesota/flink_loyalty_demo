@@ -8,10 +8,7 @@ resource "confluent_connector" "dynamodb_source" {
 
   // Block for custom *sensitive* configuration properties that are labelled with "Type: password" under "Configuration Properties" section in the docs:
   // https://docs.confluent.io/cloud/current/connectors/cc-amazon-dynamo-db-sink.html#configuration-properties
-  config_sensitive = {
-    "kafka.api.secret"      = confluent_api_key.user-api-key.secret  
-    "aws.secret.access.key" = var.aws_api_secret  
-  }
+  config_sensitive = {}
 
 // Block for custom *nonsensitive* configuration properties that are *not* labelled with "Type: password" under "Configuration Properties" section in the docs:
   // https://docs.confluent.io/cloud/current/connectors/cc-amazon-dynamo-db-sink.html#configuration-properties
@@ -19,9 +16,11 @@ resource "confluent_connector" "dynamodb_source" {
     "connector.class"                   = "DynamoDbCdcSource"
     "name"                              = "dynamodb_source"
     "aws.access.key.id"                 = var.aws_api_key
+    "aws.secret.access.key" = var.aws_api_secret  
     "dynamodb.service.endpoint"         = "https://dynamodb.us-east-1.amazonaws.com"
     "dynamodb.table.includelist"        = "customers, products"
-    "kafka.api.key"                     = confluent_api_key.user-api-key.id    
+    "kafka.api.key"                     = confluent_api_key.user-api-key.id 
+    "kafka.api.secret"      = confluent_api_key.user-api-key.secret         
     "transforms"                        = "AddPrefix",
     "transforms.AddPrefix.type"         = "io.confluent.connect.cloud.transforms.TopicRegexRouter",
     "transforms.AddPrefix.regex"        = ".*",
