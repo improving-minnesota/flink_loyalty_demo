@@ -8,7 +8,7 @@ INSERT INTO promotions
 SELECT
      email,
      COLLECT(name) AS products,
-     'Extramostbestest Pepperony Puff Bundle' AS promotion_name
+     'Extramostbestest Pepperoni Puff Bundle' AS promotion_name
   FROM order_customer_product
   WHERE name IN ('Pepperoni Crazy Puffs', 'Extramostbestest Pepperoni')
   GROUP BY email
@@ -18,8 +18,8 @@ SELECT
 INSERT INTO promotions
 SELECT
    email,
-   'Buy 2 Get Next Free Extramostbestest Cheese' AS promotion_name
+   'Detroit-Style Deep Dish Ultimate Supreme Deal' AS promotion_name
 FROM order_customer_product
-WHERE name = 'Extramostbestest Cheese'
+WHERE name = 'Detroit-Style Deep Dish Ultimate Supreme'
 GROUP BY email
-HAVING COUNT(*) % 2 = 0;
+HAVING COUNT(*) % 3 = 0;
