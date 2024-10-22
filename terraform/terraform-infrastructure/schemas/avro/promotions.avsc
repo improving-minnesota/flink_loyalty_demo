@@ -1,0 +1,19 @@
+{
+    "namespace": "littlecaesars",
+    "name": "promotions",
+    "type": "record",
+    "fields": [
+        {
+            "name": "email",
+            "type": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "promotion_name",
+            "type": {
+                "type": "string"
+            }
+        }
+    ]
+}

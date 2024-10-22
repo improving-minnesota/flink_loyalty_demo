@@ -1,0 +1,25 @@
+{
+    "namespace": "littlecaesars",
+    "name": "loyalty_levels",
+    "type": "record",
+    "fields": [
+        {
+            "name": "email",
+            "type": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "total",
+            "type": {
+                "type": "long"
+            }
+        },
+        {
+            "name": "loyalty_level",
+            "type": {
+                "type": "string"
+            }
+        }
+    ]
+}
