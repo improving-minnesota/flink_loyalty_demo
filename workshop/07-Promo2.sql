@@ -10,4 +10,4 @@ SELECT
   FROM order_customer_product
   WHERE product_name IN ('Pepperoni Crazy Puffs', 'Extramostbestest Pepperoni')
   GROUP BY email
-  HAVING COUNT(DISTINCT product_name) = 2 AND COUNT(product_name) > 10;
+  HAVING COUNT(DISTINCT product_name) = 2 AND COUNT(product_name) % 5 = 0;

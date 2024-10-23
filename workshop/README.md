@@ -1,5 +1,13 @@
 # Workshop
 
+URL: https://confluent.cloud
+
+Username: flinkdemo2024+lce[XXX]@gmail.com
+
+Password: lceDemo2024#[XXX]
+
+---
+
 All required resources in Confluent Cloud must be already created for this lab to work correctly. If you haven't already, please follow the [prerequisites](prereq.md).
 
 ----
@@ -161,7 +169,7 @@ But first, let's build our `promotions` table:
 
 
 #### Promotion 1 - Buy 10, Get 1 FREE
-People love to eat their favorite pizza, but you know what they love even more???  Getting their favorite pizza for FREE! Let's build a promotion that looks tells us when a customer reaches their 10th purchase!
+People love to eat their favorite pizza, but you know what they love even more???  Getting their favorite pizza for FREE! Let's build a promotion that looks tells us when a customer reaches their 5th purchase!
 
 Look into the data:
 
@@ -169,8 +177,8 @@ Look into the data:
 SELECT
    email,
    COUNT(*) AS total,
-   (COUNT(*) % 10) AS sequence,
-   (COUNT(*) % 10) = 0 AS next_one_free
+   (COUNT(*) % 5) AS sequence,
+   (COUNT(*) % 5) = 0 AS next_one_free
  FROM order_customer_product
  WHERE name = 'Detroit-Style Deep Dish Ultimate Supreme'
  GROUP BY email;
@@ -185,26 +193,26 @@ Our promotion engine only needs to know the email and the name of the promotion.
 INSERT INTO promotions
 SELECT
    email,
-   'Detroit-Style Deep Dish Ultimate Supreme Deal' AS promotion_name
+   'PROMO-BSGO-1' AS promotion_name
 FROM order_customer_product
 WHERE product_name = 'Detroit-Style Deep Dish Ultimate Supreme'
 GROUP BY email
-HAVING COUNT(*) % 10 = 0;
+HAVING COUNT(*) % 5 = 0;
 ```
 
 #### Promotion 2 - BUNDLE UP
-Pepperoni, who doesn't want more?  Obviously, everyone WANTS more, but we want to reward the people who have shown that they LOVE Pepperoni.  Let's build a promotion for when customer has bought both the Extramostbestest Pepperoni Pizza and Pepperoni Crazy Puffs.  After more than 10 purchases of any of the two, they qualify!
+Pepperoni, who doesn't want more?  Obviously, everyone WANTS more, but we want to reward the people who have shown that they LOVE Pepperoni.  Let's build a promotion for when customer has bought both the Extramostbestest Pepperoni Pizza and Pepperoni Crazy Puffs.  After more than 5 purchases of any of the two, they qualify!
 
 ```
 INSERT INTO promotions
 SELECT
      email,
-     COLLECT(product_name) AS products,
-     'Extramostbestest Pepperoni Puff Bundle' AS promotion_name
+     'PROMO-BUNDLE-1' AS promotion_name
   FROM order_customer_product
   WHERE product_name IN ('Pepperoni Crazy Puffs', 'Extramostbestest Pepperoni')
   GROUP BY email
-  HAVING COUNT(DISTINCT product_name) = 2 AND COUNT(product_name) > 10;
+  HAVING COUNT(DISTINCT product_name) = 2 AND COUNT(product_name) % 5 = 0;
+
 ```
 
 Let's now look at what we have going on in the promotions table:

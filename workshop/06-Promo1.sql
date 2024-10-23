@@ -9,4 +9,4 @@ SELECT
 FROM order_customer_product
 WHERE product_name = 'Detroit-Style Deep Dish Ultimate Supreme'
 GROUP BY email
-HAVING COUNT(*) % 10 = 0;
+HAVING COUNT(*) % 5 = 0;
