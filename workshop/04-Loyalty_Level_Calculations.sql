@@ -23,9 +23,9 @@ CREATE TABLE loyalty_levels(
 --   email,
 --   SUM(sale_price) AS total,
 --   CASE
---     WHEN SUM(sale_price) > 20000 THEN 'GOLD'
---     WHEN SUM(sale_price) > 7500 THEN 'SILVER'
---     WHEN SUM(sale_price) > 1000 THEN 'BRONZE'
+    -- WHEN SUM(sale_price) > 100000 THEN 'GOLD'
+    -- WHEN SUM(sale_price) > 50000 THEN 'SILVER'
+    -- WHEN SUM(sale_price) > 10000 THEN 'BRONZE'
 --     ELSE 'CLIMBING'
 --   END AS loyalty_level
 -- FROM order_customer_product

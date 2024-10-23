@@ -145,8 +145,8 @@ SELECT
   SUM(sale_price) AS total,
   CASE
     WHEN SUM(sale_price) > 100000 THEN 'GOLD'
-    WHEN SUM(sale_price) > 10000 THEN 'SILVER'
-    WHEN SUM(sale_price) > 2000 THEN 'BRONZE'
+    WHEN SUM(sale_price) > 50000 THEN 'SILVER'
+    WHEN SUM(sale_price) > 10000 THEN 'BRONZE'
     ELSE 'CLIMBING'
   END AS rewards_level
 FROM order_customer_product
