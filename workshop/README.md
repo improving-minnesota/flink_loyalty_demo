@@ -1,11 +1,4 @@
 # Workshop
-
-URL: https://confluent.cloud
-
-Username: flinkdemo2024+lce[XXX]@gmail.com
-
-Password: lceDemo2024#[XXX]
-
 ---
 
 All required resources in Confluent Cloud must be already created for this lab to work correctly. If you haven't already, please follow the [prerequisites](prereq.md).
@@ -32,9 +25,9 @@ Let's verify if all resources were created correctly and we can start using them
 
 ### Kafka Topics
 Check if the following topics exist in your Kafka cluster:
- * lce_raw_products (for product data aka Product Catalog),
- * lce_raw_customers (for customer data aka Customer CRM),
- * orders (for realtime order transactions aka Order Processing System).
+ * raw_products (for product data aka Product Catalog),
+ * datagen_customers (for customer data aka Customer CRM),
+ * datagen_orders (for realtime order transactions aka Order Processing System).
 
 ### Schemas in Schema Registry
 Check if the following Avro schemas exist in your Schema Registry:
@@ -49,8 +42,8 @@ Your Kafka cluster should have two Source Connectors.
 
 | Connector Name (can be anything)     |      Topic(s)      | Format 
 |--------------------------------------|:---------------:|-------:|
-| **dyanmodb_source** | lce_raw_customers, lce_raw_products | JSON | 
-| **order_source**    |   orders   | AVRO | 
+| **order_source**    |   datagen_orders   | AVRO | 
+| **customer_source**    |   datagen_customers   | AVRO | 
 
 ## 2. Connecting to Flink 
 You can use your web browser or console to enter Flink SQL statements.
@@ -70,26 +63,26 @@ Data Portal: `orders` topic selected. Click on `Query` button to access your Fli
 ![image](../assets/dataPortal.png)
 
 ## 3. Data Transformation
-Our customer and product data is coming in from a source database by way of a CDC connector.  Look at the product data in the topic. (Data Portal or Flink Statement) 
+Our product data is coming in from a source database in a raw JSON format.  Look at the product data in the topic. (Data Portal or Flink Statement) 
 
 ```
-SELECT * FROM lce_raw_products;
+SELECT CAST(rp.val as STRING) FROM raw_products rp;
 ```
 
-This obviously will not be easy to work with.  Let's leverage Flink to transform this raw format into our desired `Customer` and `Product` schema.
+This obviously will not be easy to work with.  Let's leverage Flink to transform this raw format into our desired `product` schema.
 
 ```
 SELECT 
-  CAST(JSON_VALUE(product_json, '$.id.S') as BYTES) as key,
-  JSON_VALUE(product_json, '$.id.S') as id,
-  JSON_VALUE(product_json, '$.name.S') as `name`,
-  CAST(JSON_VALUE(product_json, '$.sale_price.N') as INT) as sale_price,
-  CAST(JSON_VALUE(product_json, '$.rating.N') as DOUBLE) as rating
+  CAST(JSON_VALUE(product_json, '$.id') as BYTES) as key,
+  JSON_VALUE(product_json, '$.id') as id,
+  JSON_VALUE(product_json, '$.name') as product_name,
+  JSON_VALUE(product_json, '$.product_type') as product_type,
+  CAST(JSON_VALUE(product_json, '$.sale_price') as INT) as sale_price
 FROM 
   (  
-     SELECT 
-         JSON_VALUE(JSON_STRING(after), '$.document') as product_json 
-     FROM `lce_raw_products`
+    SELECT 
+      CAST(rp.val as STRING) as product_json
+    FROM `raw_products` rp
   );
 ```
 
@@ -97,24 +90,14 @@ Verify the data looks right, then we will push it to a new table and topic!
 
 > [01-Product_Transformation.sql](01-Product_Transformation.sql)
 
-Do the same for customers...
-
-> [02-Customer_Transformation.sql](02-Customer_Transformation.sql)
-
-
-Verify the data is making to to `customer` and `products` topics.
-
-
-```
-SELECT * FROM customer;
-```
+Verify the data is making to to the `products` topic.
 
 ```
 SELECT * FROM products;
 ```
 
 ## 4. Data Enrichment  
-Now that we have those cleaned up, let's put them to use!  We will join data from: Order, Customer, Product tables together in a single SQL statement.
+Now that we have that cleaned up, let's put the data to use!  We will join data from: Order, Customer, Product tables together in a single SQL statement.
 
 > [03-Order_Enrichment.sql](03-Order_Enrichment.sql)
 
@@ -127,7 +110,7 @@ SELECT * FROM order_customer_product;
 ## 5. Loyalty Level Calculations
 Now we are ready to calculate loyalty levels for our customers.  Your team has decided to create 4 levels of pizza shop loyalty.  GOLD, SILVER, BRONZE, and CLIMBING.  The levels will coincide to a customer's TOTAL SPEND in their lifetime as a customer.
 
-Let's get a feel for the data (explore lifetime spends and purchase counts)
+Let's get a feel for the data (explore lifetime spends)
 
 ```
 SELECT
@@ -144,9 +127,9 @@ SELECT
   email,
   SUM(sale_price) AS total,
   CASE
-    WHEN SUM(sale_price) > 100000 THEN 'GOLD'
-    WHEN SUM(sale_price) > 50000 THEN 'SILVER'
-    WHEN SUM(sale_price) > 10000 THEN 'BRONZE'
+    WHEN SUM(sale_price) > 50000 THEN 'GOLD'
+    WHEN SUM(sale_price) > 10000 THEN 'SILVER'
+    WHEN SUM(sale_price) > 2500 THEN 'BRONZE'
     ELSE 'CLIMBING'
   END AS rewards_level
 FROM order_customer_product
@@ -168,8 +151,8 @@ But first, let's build our `promotions` table:
 > [05-Promotions_Table.sql](05-Promotions_Table.sql)
 
 
-#### Promotion 1 - Buy 10, Get 1 FREE
-People love to eat their favorite pizza, but you know what they love even more???  Getting their favorite pizza for FREE! Let's build a promotion that looks tells us when a customer reaches their 5th purchase!
+#### Promotion 1 - Buy 6 Pizzas, Get 1 FREE
+People love to eat their favorite pizza, but you know what they love even more???  Getting their favorite pizza for FREE! Let's build a promotion that looks tells us when a customer reaches their 6th purchase!
 
 Look into the data:
 
@@ -177,31 +160,20 @@ Look into the data:
 SELECT
    email,
    COUNT(*) AS total,
-   (COUNT(*) % 5) AS sequence,
-   (COUNT(*) % 5) = 0 AS next_one_free
+   (COUNT(*) % 6) AS sequence,
+   (COUNT(*) % 6) = 0 AS next_one_free
  FROM order_customer_product
- WHERE name = 'Detroit-Style Deep Dish Ultimate Supreme'
+ WHERE product_type = 'Pizza'
  GROUP BY email;
 ```
-> NOTE:  Order generation data is random.  You might need to select a different product or adjust your Buy amount a bit. 
+> NOTE:  Order generation data is random.  You might need to select a different puchase count to get promotions to show up. 
 
 Our promotion engine only needs to know the email and the name of the promotion.  It will look up the notification and verbage to send in another system.  So we don't need to have a customer's "journey" towards the promotion, just the ones that have activated the promotion.  We can do that!
 
 > [06-Promo1.sql](06-Promo1.sql)
 
-```
-INSERT INTO promotions
-SELECT
-   email,
-   'PROMO-BSGO-1' AS promotion_name
-FROM order_customer_product
-WHERE product_name = 'Detroit-Style Deep Dish Ultimate Supreme'
-GROUP BY email
-HAVING COUNT(*) % 5 = 0;
-```
-
 #### Promotion 2 - BUNDLE UP
-Pepperoni, who doesn't want more?  Obviously, everyone WANTS more, but we want to reward the people who have shown that they LOVE Pepperoni.  Let's build a promotion for when customer has bought both the Extramostbestest Pepperoni Pizza and Pepperoni Crazy Puffs.  After more than 5 purchases of any of the two, they qualify!
+Let's put together another promotion.  This one will trigger after someone has bought a Drink and a Detroit Style Pizza.
 
 ```
 INSERT INTO promotions
@@ -209,9 +181,9 @@ SELECT
      email,
      'PROMO-BUNDLE-1' AS promotion_name
   FROM order_customer_product
-  WHERE product_name IN ('Pepperoni Crazy Puffs', 'Extramostbestest Pepperoni')
+  WHERE product_type IN ('Drinks', 'Detroit-Style Pizza')
   GROUP BY email
-  HAVING COUNT(DISTINCT product_name) = 2 AND COUNT(product_name) % 5 = 0;
+  HAVING COUNT(DISTINCT product_type) = 2;
 
 ```
 

@@ -28,6 +28,12 @@
             }
         },
         {
+            "name": "product_type",
+            "type": {
+                "type": "string"
+            }
+        },
+        {
             "name": "product_name",
             "type": {
                 "type": "string"
@@ -37,12 +43,6 @@
             "name": "sale_price",
             "type": {
                 "type": "int"
-            }
-        }, 
-        {
-            "name": "rating",
-            "type": {
-                "type": "double"
             }
         }
     ]

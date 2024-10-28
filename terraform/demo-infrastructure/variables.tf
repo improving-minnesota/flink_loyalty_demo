@@ -1,3 +1,13 @@
+variable "confluent_cloud_api_key" {
+  description = "Confluent Cloud API Key (also referred as Cloud API ID) with OrganizationAdmin permissions"
+  type        = string
+}
+
+variable "confluent_cloud_api_secret" {
+  description = "Confluent Cloud API Secret"
+  type        = string
+  sensitive   = true
+}
 variable "stream_governance_package" {
   description = "The selected stream governance package - more details can be found at https://docs.confluent.io/cloud/current/stream-governance/packages.html#governance-package-types"
   type        = string
@@ -7,11 +17,6 @@ variable "stream_governance_package" {
     condition     = contains(["ESSENTIALS", "ADVANCED"], var.stream_governance_package)
     error_message = "The stream_governance_package must be either 'ESSENTIALS' or 'ADVANCED'."
   }
-}
-
-variable "environment_display_name" {
-  description = "Confluent Cloud Environment Display Name"
-  type        = string
 }
 
 variable "cloud_provider" {
@@ -35,13 +40,7 @@ variable "cloud_region" {
   }
 }
 
-variable "cloud_availability" {
-  description = "The availability of the cluster within the cloud provider"
-  type        = string
-  default     = "SINGLE_ZONE"
-
-  validation {
-    condition     = contains(["SINGLE_ZONE"], var.cloud_availability)
-    error_message = "The cloud_availability must be 'SINGLE_ZONE' at this time."
-  }
-}
+variable "environment_name" {
+    type        = string
+    default = "demo_env"
+    }

@@ -20,15 +20,10 @@ data "confluent_environment" "default" {
 }
 
 module "demo_environment" {
-  for_each = {for i, v in var.environment_mappings:  i => v}
   source = "../modules/demo_environment"
 
-  environment_display_name  = "demo-${each.value.env_name}"
-  cc_user_email = each.value.email
+  environment_display_name  = var.environment_name
   stream_governance_package = "ESSENTIALS"
-
-  aws_api_key = var.aws_api_key
-  aws_api_secret = var.aws_api_secret
 
   providers = {
     confluent = confluent

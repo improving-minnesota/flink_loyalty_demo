@@ -9,9 +9,9 @@ CREATE TABLE order_customer_product(
   first_name STRING,
   last_name STRING,
   email STRING,
+  product_type STRING,
   product_name STRING,
-  sale_price INT,
-  rating DOUBLE
+  sale_price INT
 )WITH (
     'changelog.mode' = 'retract'
 );
@@ -27,20 +27,21 @@ CREATE TABLE order_customer_product(
 --   first_name,
 --   last_name,
 --   email,
+--   product_type,
 --   product_name,
---   sale_price,
---   rating)
+--   sale_price
+--   )
 -- SELECT
 --   o.order_id,
 --   c.first_name,
 --   c.last_name,
 --   c.email,
---   p.name,
---   p.sale_price,
---   p.rating
+--   p.product_type,
+--   p.product_name,
+--   p.sale_price
 -- FROM 
---   orders o
---   INNER JOIN customers c 
+--   datagen_orders o
+--   INNER JOIN datagen_customers c 
 --     ON o.customer_id = c.id
 --   INNER JOIN products p
 --     ON o.product_id = p.id;
