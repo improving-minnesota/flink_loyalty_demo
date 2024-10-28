@@ -1,5 +1,5 @@
 {
-    "namespace": "littlecaesars",
+    "namespace": "demo",
     "name": "orders",
     "type": "record",
     "fields": [

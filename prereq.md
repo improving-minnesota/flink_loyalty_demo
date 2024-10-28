@@ -67,8 +67,8 @@ NOTE: We use Datagen with following templates:
 
 
 Create two datagen connectors to fill the topics customers and orders, go to `Connectors` and click `Add Connector`. Pay attention when you select the template for the datagen connector and ensure, that it corresponds with the before selected topic as shown in the following. Deviations in this step will result in invalid queries at later stages in the workshop.
-* Connector Plug-in `Sample Data`, Topic `customers`, Global Access amd Download API Key with Description `Datagen Connector Customers`, Format `AVRO`, template `Shoe customers`, 1 Task, Connector Name `datagen_customers` 
-* Connector Plug-in `Sample Data`, Topic `orders`, Global Access amd Download API Key with Description `Datagen Connector Orders`, Format `AVRO`, template `Shoe orders`, 1 Task, Connector Name `datagen_orders` 
+* Connector Plug-in `Sample Data`, Topic `datagen_customers`, Global Access amd Download API Key with Description `Datagen Connector Customers`, Format `AVRO`, template `Shoe customers`, 1 Task, Connector Name `customers_source` 
+* Connector Plug-in `Sample Data`, Topic `datagen_orders`, Global Access amd Download API Key with Description `Datagen Connector Orders`, Format `AVRO`, template `Shoe orders`, 1 Task, Connector Name `orders_source` 
 
 2 Connectors are up and running and are generating data for us.
 

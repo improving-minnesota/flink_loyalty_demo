@@ -1,5 +1,5 @@
 {
-    "namespace": "littlecaesars",
+    "namespace": "demo",
     "name": "order_customer_product",
     "type": "record",
     "fields": [
