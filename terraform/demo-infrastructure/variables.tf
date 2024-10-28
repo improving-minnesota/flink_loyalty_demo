@@ -42,5 +42,5 @@ variable "cloud_region" {
 
 variable "environment_name" {
     type        = string
-    default = "demo_env"
+    default = "demo-env"
     }
