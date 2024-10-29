@@ -15,7 +15,7 @@ The hands-on consists of a lab (see below), and these require Confluent Cloud in
  *  Preparation of required Confluent Cloud Resources: You can either create your infrastructure manually with this [guide](prereq.md) or you can use Terraform for an automatated creation: [Terraform guide](terraform.md).
 
 ## Workshop Lab
-  *  [Lab #1](worksh0p/README.md): Pizza Loyalty Team - Data Transforms, Data Enrichment, Loyalty and Promotion Calculations!
+  *  [Workshop Directions](worksh0p/README.md): Pizza Loyalty Team - Data Transforms, Data Enrichment, Loyalty and Promotion Calculations!
 
 ## Costs of this Confluent Cloud - Flink SQL Workshop
 The lab execution do not consume much money. We calculated an amount of less than 10$ for a couple of hours of testing. If you create the cluster one day before, we recommend to pause all connectors.
