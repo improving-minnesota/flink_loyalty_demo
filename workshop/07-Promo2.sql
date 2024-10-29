@@ -1,5 +1,5 @@
 -------------
--- PROMO 2 - BUNDLE UP -- Extramostbestest Pepperoni Puff Bundle
+-- PROMO 2 - BUNDLE UP
 -------------
 
 INSERT INTO promotions

@@ -6,8 +6,6 @@ resource "confluent_connector" "customer_source" {
     id = confluent_kafka_cluster.this.id
   }
 
-  status = "PAUSED"
-
   // Block for custom *nonsensitive* configuration properties that are *not* labelled with "Type: password" under "Configuration Properties" section in the docs:
   // https://docs.confluent.io/cloud/current/connectors/cc-datagen-source.html#configuration-properties
   config_sensitive = {
@@ -36,8 +34,6 @@ resource "confluent_connector" "order_source" {
   kafka_cluster {
     id = confluent_kafka_cluster.this.id
   }
-
-  status = "PAUSED"
 
   // Block for custom *nonsensitive* configuration properties that are *not* labelled with "Type: password" under "Configuration Properties" section in the docs:
   // https://docs.confluent.io/cloud/current/connectors/cc-datagen-source.html#configuration-properties
