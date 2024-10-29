@@ -1,8 +1,8 @@
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
-2. [Repo Structure](#repo-structure)
-3. [Getting Started](#getting-started)
+2. [Getting Started](#getting-started)
+3. [Provision Confluent Cloud Infrastructure](#provisioning-confluent-cloud-infrastructure)
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ export TF_VAR_confluent_cloud_api_key="<cloud_api_key>"
 export TF_VAR_confluent_cloud_api_secret="<cloud_api_secret>"
 ```
 
-### Provisioning Confluent Cloud **Environments**
+## Provisioning Confluent Cloud Infrastructure
 First, provision your environments from the `demo-infrastructure` repo (folder).
 
 1. `cd terraform/demo-infrastructure`
