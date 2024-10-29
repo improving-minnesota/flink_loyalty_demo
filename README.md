@@ -12,10 +12,10 @@ In this workshop, we will build a Pizza Shop Loyalty Engine. We will use Flink S
 ## Required Confluent Cloud Resources 
 The hands-on consists of a lab (see below), and these require Confluent Cloud infrastructure that has to be provisioned before we can start with the actual workshop. 
 
- *  Preparation of required Confluent Cloud Resources: You can either create your infrastructure manually with this [guide](prereq.md) or you can use Terraform for an automatated creation: [Terraform guide](terraform.md).
+ *  Preparation of required Confluent Cloud Resources: You can either create your infrastructure manually with this [guide](prereq.md) or you can use Terraform for an automatated creation: [Terraform guide](terraform/README.md).
 
 ## Workshop Lab
-  *  [Workshop Directions](worksh0p/README.md): Pizza Loyalty Team - Data Transforms, Data Enrichment, Loyalty and Promotion Calculations!
+  *  [Workshop](workshop/README.md): Pizza Loyalty Team - Data Transforms, Data Enrichment, Loyalty and Promotion Calculations!
 
 ## Costs of this Confluent Cloud - Flink SQL Workshop
 The lab execution do not consume much money. We calculated an amount of less than 10$ for a couple of hours of testing. If you create the cluster one day before, we recommend to pause all connectors.
